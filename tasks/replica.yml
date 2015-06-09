@@ -1,0 +1,46 @@
+---
+#- name 
+- name: Install pip
+  apt: pkg=python-pip state=installed
+  when: is_master
+
+- name: Install pymongo
+  pip: name=pymongo
+  when: is_master
+
+- name: Copy ismaster
+  copy: src=ismaster.py 
+        owner=root 
+        dest=/tmp/.ismaster.py
+  when: is_master
+
+- name: Check if the replSet if set
+  command: /usr/bin/mongo local --eval "printjson(rs.status().members.length)"
+  register: repl_status
+  when: is_master
+  ignore_errors: True
+
+- name: Restart Mongo master if replica set was not previously set
+  command: service mongod restart
+  when: is_master and repl_status.stdout.split('\n')[2]|int != 3
+
+- name: ReplicaSet init rs-init when master
+  command: mongo local --eval "printjson(rs.initiate())"
+  args:
+    chdir: /tmp
+  when: is_master and repl_status.stdout.split('\n')[2]|int != 3
+
+## - name: Restart Mongo master if replica set was not previously set
+##   command: service mongod restart
+##   when: is_master == False
+
+- debug: msg="replica={{item}}"
+  with_items: groups['mongo-replica']
+  when: is_master
+
+- name: Add replica
+  command: mongo local --eval "printjson(rs.add('{{ item }}'))"
+  args:
+    chdir: /tmp
+  when: is_master and repl_status.stdout.split('\n')[2]|int != 3
+  with_items: groups['mongo-replica']

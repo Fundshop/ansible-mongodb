@@ -1,0 +1,17 @@
+- apt_key: keyserver=keyserver.ubuntu.com id=7F0CEB10
+
+- name: Install repo
+  apt_repository: repo='deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main' state=present
+
+- name: Install Mongo
+  apt: pkg=mongodb-org=3.0.1 state=installed
+
+- name: Ensure mongodb started and enabled
+  service: name=mongod state=started enabled=yes
+
+- name: Configure mongodb
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf backup=yes owner=root group=root mode=0644
+  notify: Restart mongod
+
+- name: Configure log rotation
+  template: src=logrotate.conf.j2 dest=/etc/logrotate.d/mongodb.conf

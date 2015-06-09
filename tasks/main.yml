@@ -1,0 +1,9 @@
+---
+# tasks file for ansible-mongodb
+
+- include: install.yml
+  tags: mongodb_install
+
+##  Not working
+## - include: replica.yml
+##   tags: mongodb_replica 

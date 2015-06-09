@@ -1,0 +1,5 @@
+---
+# defaults file for ansible-mongodb
+is_master: False
+mongodb_conf_replSet: False
+mongodb_conf_oplogSize: 1024
