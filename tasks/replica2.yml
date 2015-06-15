@@ -1,0 +1,16 @@
+- name: Create the file to initialize the mongod replica set
+  template: src=repset_init.j2 dest=/tmp/repset_init.js
+
+- name: Restart mongodb to be sure is init repl state
+  shell: service mongod restart
+
+- name: Pause for a while
+  pause: seconds=10
+
+- name: Initialize the replication set
+  shell: /usr/bin/mongo /tmp/repset_init.js
+#  shell: /usr/bin/mongo --port "{{ mongod_port }}" /tmp/repset_init.js
+
+- debug: msg="replica={{item}}"
+  with_items: groups['mongo']
+

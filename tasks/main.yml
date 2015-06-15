@@ -7,3 +7,7 @@
 ##  Not working
 ## - include: replica.yml
 ##   tags: mongodb_replica 
+
+- include: replica2.yml
+  tags: mongodb_replica
+  when: is_master
