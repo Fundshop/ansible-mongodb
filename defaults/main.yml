@@ -3,3 +3,4 @@
 is_master: false
 mongodb_conf_replSet: false
 mongodb_conf_oplogSize: 1024
+mongo_hosts: mongo
