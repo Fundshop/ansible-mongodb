@@ -10,4 +10,4 @@
 
 - include: replica2.yml
   tags: mongodb_replica
-  when: is_master
+  when: is_master and mongodb_conf_replSet

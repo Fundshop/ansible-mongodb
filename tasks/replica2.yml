@@ -11,6 +11,6 @@
   shell: /usr/bin/mongo /tmp/repset_init.js
 #  shell: /usr/bin/mongo --port "{{ mongod_port }}" /tmp/repset_init.js
 
-- debug: msg="replica={{item}}"
-  with_items: groups['mongo']
+## - debug: msg="replica={{item}}"
+##   with_items: groups['mongo']
 
