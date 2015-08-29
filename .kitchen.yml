@@ -8,6 +8,7 @@ provisioner:
   name: ansible_playbook
   ansible_verbosity: 2
   ansible_verbose: true
+  require_ansible_omnibus: true
   #requirements_path: requirements-test.txt
 
 platforms:
