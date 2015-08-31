@@ -16,6 +16,7 @@ platforms:
     driver_config:
       image: debian:wheezy-backports
       platform: debian
+      require_chef_omnibus: false
 
 suites:
   - name: default
