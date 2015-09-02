@@ -57,7 +57,11 @@ logappend=true
 #notablescan = true
 
 # Disable data file preallocation.
-#noprealloc = true
+noprealloc = {{ mongodb_conf_noprealloc }}
+
+directoryperdb = {{ mongodb_conf_directoryperdb }}
+
+smallfiles = {{ mongodb_conf_smallfiles }}
 
 # Specify .ns file size for new databases.
 # nssize = <size>
