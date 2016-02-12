@@ -2,6 +2,7 @@
 driver:
   name: docker
   use_sudo: false
+  require_chef_omnibus: false # No need of chef
 
 provisioner:
   hosts: test-kitchen
@@ -10,13 +11,13 @@ provisioner:
   ansible_verbose: true
   require_ansible_omnibus: true
   #requirements_path: requirements-test.txt
+  require_chef_for_busser: false # No need of chef
 
 platforms:
   - name: debian-wheezy
     driver_config:
       image: seraf/wheezy-kitchenci
       platform: debian
-      require_chef_omnibus: false
 
 suites:
   - name: default
