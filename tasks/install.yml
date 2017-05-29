@@ -1,10 +1,14 @@
-- apt_key: keyserver=keyserver.ubuntu.com id=7F0CEB10
+- apt_key: keyserver=keyserver.ubuntu.com id="{{mongodb_apt_key_id}}"
 
 - name: Install repo
-  apt_repository: repo='deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main' state=present
+  apt_repository: repo="{{mongodb_apt_repo}}" state=present
 
 - name: Install Mongo
-  apt: pkg=mongodb-org=3.0.1 state=installed
+  apt: pkg="mongodb-org={{mongodb_version}}" state=installed
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
 
 - name: Ensure mongodb started and enabled
   service: name=mongod state=started enabled=yes
