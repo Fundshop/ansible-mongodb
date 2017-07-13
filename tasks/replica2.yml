@@ -11,7 +11,7 @@
   when: repset_init.stat.exists == False
 
 - name: Pause for a while
-  pause: seconds=10
+  pause: seconds=30
   when: repset_init.stat.exists == False
 
 - name: Initialize the replication set
