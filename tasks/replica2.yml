@@ -7,7 +7,7 @@
   when: repset_init.stat.exists == False
 
 - name: Restart mongodb to be sure is init repl state
-  shell: service mongod restart
+  service: name={{ 'mongodb' if mongodb_use_debian_package else 'mongod' }} state=restarted
   when: repset_init.stat.exists == False
 
 - name: Pause for a while
