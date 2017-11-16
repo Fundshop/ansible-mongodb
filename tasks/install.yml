@@ -25,7 +25,7 @@
   notify: Restart mongodb
 
 - name: Configure log rotation
-  template: src=logrotate.conf.j2 dest=/etc/logrotate.d/mongodb.conf
+  template: src=logrotate.conf.j2 dest=/etc/logrotate.d/{{ 'mongodb-server' if mongodb_use_debian_package else 'mongodb.conf' }}
   tags:
     - logrotate
 
