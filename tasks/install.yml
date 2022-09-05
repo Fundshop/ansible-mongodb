@@ -11,6 +11,7 @@
 
 - name: Install Mongo from external MongoDB repository
   apt: pkg="mongodb-org={{mongodb_version}}" state=installed
+    force: true
   when: not mongodb_use_debian_package
 
 - name: Install Mongo from default Debian repository
