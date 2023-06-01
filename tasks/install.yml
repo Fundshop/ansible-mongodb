@@ -10,11 +10,11 @@
     update_cache: yes
 
 - name: Install Mongo from external MongoDB repository
-  apt: pkg="mongodb-org={{mongodb_version}}" state=installed
+  apt: pkg="mongodb-org={{mongodb_version}}" state=present
   when: not mongodb_use_debian_package
 
 - name: Install Mongo from default Debian repository
-  apt: pkg="mongodb" state=installed
+  apt: pkg="mongodb" state=present
   when: mongodb_use_debian_package
 
 - name: Ensure mongodb started and enabled
