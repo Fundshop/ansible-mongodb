@@ -10,6 +10,8 @@ mongo_hosts: mongo
 
 mongodb_use_debian_package: false
 mongodb_apt_key_id: 7F0CEB10
+mongodb_apt_key_url: ""
+# mongodb_apt_key_url: "https://pgp.mongodb.com/server-6.0.asc"
 mongodb_apt_repo: "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main"
 mongodb_version: 3.0.1
 
