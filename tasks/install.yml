@@ -1,5 +1,11 @@
 - apt_key: keyserver=keyserver.ubuntu.com id="{{mongodb_apt_key_id}}"
-  when: not mongodb_use_debian_package
+  when: not mongodb_use_debian_package and mongodb_apt_key_url == ""
+
+- name: Add Apt signing key from URL
+  ansible.builtin.apt_key:
+    url: "{{ mongodb_apt_key_url }}"
+    state: present
+  when: mongodb_apt_key_url != ""
 
 - name: Install repo
   apt_repository: repo="{{mongodb_apt_repo}}" state=present
