@@ -6,8 +6,8 @@
 
 ##  Not working
 ## - include: replica.yml
-##   tags: mongodb_replica 
+##   tags: mongodb_replica
 
 - include: replica2.yml
   tags: mongodb_replica
-  when: is_master and mongodb_conf_replSet
+  when: is_master and mongodb_conf_replSet and mongodb_rs_initialize|bool
