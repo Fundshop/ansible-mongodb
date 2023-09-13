@@ -2,6 +2,7 @@
 # defaults file for ansible-mongodb
 is_master: false
 mongodb_conf_replSet: false
+mongodb_rs_initialize: false
 mongodb_conf_oplogSize: 1024
 mongodb_conf_noprealloc: 'false'
 mongodb_conf_directoryperdb: 'false'
